@@ -32,7 +32,15 @@ let soundAllowed = function(stream) {
     animate()
 }
 
-// container.addEventListener('keydown', soundAllowed);
+canvas.addEventListener('click', function() {
+  if (this.requestFullscreen) {
+    this.requestFullscreen();
+  } else if (elem.webkitRequestFullscreen) { /* Safari */
+    this.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE11 */
+    this.msRequestFullscreen();
+  }
+});
 
 navigator.mediaDevices.getUserMedia({ audio: true, video: false}).then(soundAllowed).catch(err => console.log(err)); 
 
